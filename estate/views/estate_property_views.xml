@@ -27,18 +27,21 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name"/> 
-                <field name="type_id"/> 
-                <field name="postalcode"/> 
-                <field name="selling_price"/> 
-                <field name="state"/> 
-                <field name="date_availability"/> 
-                
-                <filter name="filter_available" string="Disponibles" domain="['|', ('state', '=', 'new'), ('state', '=', 'offer_received')]"/> 
+                <field name="name"/>
+                <field name="type_id"/>
+                <field name="postalcode"/>
+                <field name="selling_price"/>
+                <field name="state"/>
+                <field name="date_availability"/>
+                <filter name="filter_available" string="Disponibles" domain="['|', ('state', '=', 'new'), ('state', '=', 'offer_received')]"/>
                 <filter name="filter_low_price" string="Baix preu" domain="[('selling_price', '&lt;', 100000)]"/>
-                
                 <group string="Agrupar per">
+                    <filter name="group_by_name" string="Nom" context="{'group_by': 'name'}"/>
+                    <filter name="group_by_postalcode" string="Codi Postal" context="{'group_by': 'postalcode'}"/>
+                    <filter name="group_by_state" string="Estat" domain="[]" context="{'group_by': 'state'}"/>
                     <filter name="group_by_type" string="Tipus" domain="[]" context="{'group_by': 'type_id'}"/>
+                    <filter name="group_by_selling_price" string="Preu de Venda" domain="[]" context="{'group_by': 'selling_price'}"/>
+                    <filter name="group_by_date_availability" string="Disponibilitat" context="{'group_by': 'date_availability'}"/>
                 </group>
             </search>
         </field>
